@@ -89,8 +89,8 @@ class Snippets {
             }
             .comment-respond .comment-form-embo-avatar label::after,
             .comment-respond .comment-form-embo-image  label::after{
-                content:"";flex:0 0 28px;height:28px;border-radius:9999px;display:inline-block;
-                background-color:#555;background-position:center;background-repeat:no-repeat;background-size:18px 18px;
+                content:"";padding:5px 24px;flex:0 0 28px;height:28px;border-radius:9999px;display:inline-block;
+                background-position:center;background-repeat:no-repeat;background-size:18px 18px;
             }
             /* Icon for avatar upload */
             .comment-respond .comment-form-embo-avatar label::after{
@@ -100,6 +100,8 @@ class Snippets {
             .comment-respond .comment-form-embo-image label::after{
                 background-image:url('<?php echo esc_url( plugins_url('assets/img/icons/icon-img.svg', __FILE__) ); ?>');
             }
+            .comment-respond .comment-form-embo-avatar label::after,
+            .comment-respond .comment-form-embo-image label::after{background-color:#454545;}
             .comment-respond .comment-form-embo-avatar.has-file label::after,
             .comment-respond .comment-form-embo-image.has-file label::after{background-color:#265207;}
 
@@ -140,8 +142,8 @@ class Snippets {
             unset($fields['url']);
 
             // Rebuild author/email with labels & placeholders
-            $author_placeholder = esc_attr__( 'Your name', 'embo-simple-snippets' );
-            $email_placeholder  = esc_attr__( 'Your email', 'embo-simple-snippets' );
+            $author_placeholder = esc_attr__( 'Ваше ім\'я', 'embo-simple-snippets' );
+            $email_placeholder  = esc_attr__( 'Ваш email', 'embo-simple-snippets' );
 
             if ( isset($fields['author']) ) {
                 $fields['author'] = sprintf(
@@ -429,6 +431,21 @@ class Snippets {
         $html = str_replace('value="Залишити Коментар"', 'value="Опублікувати"', $html);
         // Replace heading text regardless of casing.
         $html = str_replace(['>Залишити коментар<', '>Залишити Коментар<'], '>Залишити відгук<', $html);
+
+        // Localize placeholder text and logout link.
+        $html = str_replace(
+            [
+                'placeholder="Your name"',
+                'placeholder="Your email"',
+                'Log out »'
+            ],
+            [
+                'placeholder="Ваше ім\'я"',
+                'placeholder="Ваш email"',
+                'Вийти'
+            ],
+            $html
+        );
         echo $html;
     }
 
