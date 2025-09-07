@@ -2,7 +2,7 @@
 
 /**
  * Plugin Name: Embo Simple Snippets
- * Plugin URI:  https://github.com/pan-canon/embo-simple-snippets
+ * Plugin URI:  https://github.com/pan-canon/embo-snippets/tree/main
  * Description: Loads snippets.php which defines a class with register() for your hooks.
  * Author: Pan Canon
  * Author URI: https://embo-studio.ua/
