@@ -115,16 +115,30 @@ class Snippets {
             .comment-respond p.form-submit input[type=submit]{background:#2e5f0b;color:#fff;border:0;border-radius:9999px;padding:12px 28px;font-weight:600;cursor:pointer;}
             .comment-respond p.form-submit input[type=submit]:hover{background:#265207;}
 
-            /* Mobile layout */
-            @media (max-width:768px){
+            /* Mobile and small-screen layout */
+            @media (max-width:800px){
                 .comment-respond .comment-form{grid-template-columns:1fr;}
                 .comment-respond .comment-form-author,
                 .comment-respond .comment-form-email,
                 .comment-respond .comment-form-embo-avatar,
                 .comment-respond .comment-form-embo-image,
-                .comment-respond p.form-submit{grid-column:1;grid-row:auto;}
-                .comment-respond p.form-submit{justify-self:stretch;}
+                .comment-respond #comment-textarea,
+                .comment-respond p.form-submit{
+                    grid-column:1;
+                    grid-row:auto;
+                    width:100%;
+                }
+                .comment-respond .comment-form-embo-avatar label,
+                .comment-respond .comment-form-embo-image label{width:100%;}
+                .comment-respond .comment-form-embo-avatar ~ p.form-submit,
+                .comment-respond .comment-form-embo-image  ~ p.form-submit{grid-column:1;}
+                .comment-respond p.form-submit{justify-self:stretch;text-align:center;}
                 .comment-respond p.form-submit input[type=submit]{width:100%;}
+            }
+            /* Slightly narrow screens: shrink submit button */
+            @media (min-width:700px) and (max-width:800px){
+                .comment-respond p.form-submit{justify-self:center;}
+                .comment-respond p.form-submit input[type=submit]{width:80%;}
             }
             </style>
             <?php
@@ -235,6 +249,14 @@ class Snippets {
                 input.addEventListener('change', toggle);
                 toggle();
             });
+            // Move upload fields just above the submit button to keep layout consistent
+            var submit = document.querySelector('.comment-respond p.form-submit');
+            if(submit){
+                var avatar = document.querySelector('.comment-form-embo-avatar');
+                var image  = document.querySelector('.comment-form-embo-image');
+                if(avatar){ submit.parentNode.insertBefore(avatar, submit); }
+                if(image){ submit.parentNode.insertBefore(image, submit); }
+            }
             })();
             </script>
             <?php
