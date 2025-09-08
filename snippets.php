@@ -85,7 +85,7 @@ class Snippets {
             .comment-respond .comment-form-embo-image  label{
                 display:inline-flex;align-items:center;gap:10px;
                 padding:10px 14px 10px 12px;border-radius:9999px;
-                cursor:pointer;user-select:none;line-height:1;white-space:nowrap;
+                cursor:pointer;user-select:none;line-height:1;
             }
             .comment-respond .comment-form-embo-avatar label::after,
             .comment-respond .comment-form-embo-image  label::after{
@@ -105,12 +105,6 @@ class Snippets {
             .comment-respond .comment-form-embo-avatar.has-file label::after,
             .comment-respond .comment-form-embo-image.has-file label::after{background-color:#265207;}
 
-            /* Responsive adjustments for label wrapping */
-            @media (max-width:1020px) and (min-width:768px){
-                .comment-respond .comment-form-embo-avatar label,
-                .comment-respond .comment-form-embo-image  label{white-space:normal;}
-            }
-
             /* Submit button */
             .comment-respond p.form-submit input[type=submit]{background:#2e5f0b;color:#fff;border:0;border-radius:9999px;padding:12px 28px;font-weight:600;cursor:pointer;}
             .comment-respond p.form-submit input[type=submit]:hover{background:#265207;}
@@ -127,6 +121,7 @@ class Snippets {
                     grid-column:1;
                     grid-row:auto;
                     width:100%;
+                    min-width:40%;
                 }
                 .comment-respond .comment-form-embo-avatar label,
                 .comment-respond .comment-form-embo-image label{width:100%;}
@@ -134,6 +129,21 @@ class Snippets {
                 .comment-respond .comment-form-embo-image  ~ p.form-submit{grid-column:1;}
                 .comment-respond p.form-submit{justify-self:stretch;text-align:center;}
                 .comment-respond p.form-submit input[type=submit]{width:100%;}
+            }
+            /* Extra small screens: adjust file upload icon alignment */
+            @media (max-width:550px){
+                .comment-respond .comment-form-embo-avatar label,
+                .comment-respond .comment-form-embo-image label{
+                    padding-right:50px; /* leave room for icons on narrow screens */
+                    position:relative;
+                }
+                .comment-respond .comment-form-embo-avatar label::after,
+                .comment-respond .comment-form-embo-image label::after{
+                    position:absolute;
+                    right:10px;
+                    top:50%;
+                    transform:translateY(-50%);
+                }
             }
             /* Slightly narrow screens: shrink submit button */
             @media (min-width:700px) and (max-width:800px){
